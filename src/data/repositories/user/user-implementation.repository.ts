@@ -36,7 +36,7 @@ export class UserImplementationRepository extends UserRepository {
     }
 
     getUsers(): Observable<UserModel> {
-        return this.http.get<UserEntity>(`https://634e2246b8ce95a1dd7f445e.mockapi.io/api`).pipe(
+        return this.http.get<UserEntity>(`https://634e2246b8ce95a1dd7f445e.mockapi.io/api/login`).pipe(
             map(this.userMapper.mapFrom));
     }
 }

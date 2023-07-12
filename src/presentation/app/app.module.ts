@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRepository } from 'src/domain/repositories/user.repository';
 import { UserImplementationRepository } from 'src/data/repositories/user/user-implementation.repository';
+import { DataModule } from 'src/data/data.module';
 
 @NgModule({
   declarations: [
@@ -12,10 +13,10 @@ import { UserImplementationRepository } from 'src/data/repositories/user/user-im
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DataModule
   ],
   providers: [
-    { provide: UserRepository, useClass: UserImplementationRepository },
   ],
   bootstrap: [AppComponent]
 })

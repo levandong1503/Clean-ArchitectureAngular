@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { GetUserUseCase } from 'src/domain/usecases/get-user.usecase';
 import { GetUsersUseCase } from 'src/domain/usecases/get-users.usecase';
@@ -10,11 +10,15 @@ import { GetUsersUseCase } from 'src/domain/usecases/get-users.usecase';
 export class AppComponent {
   title = 'CleanArchitecture';
   userList:any;
-  constructor(){
-    // private userService: GetUsersUseCase
-    // this.userService.execute().subscribe(res => {
-    //   this.userList = res;
-    // });
+  constructor(private readonly getUsers: GetUsersUseCase, private cdf: ChangeDetectorRef){
+    this.getUsers.execute().subscribe(res => {
+      this.userList = res;
+      console.log(res);
+      this.cdf.detectChanges();
+      
+    });
+    console.log(this.userList);
+    
   }
   
 }
