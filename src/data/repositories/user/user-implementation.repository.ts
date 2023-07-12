@@ -8,7 +8,8 @@ import { UserRepository } from 'src/domain/repositories/user.repository';
 import { UserModel } from 'src/domain/models/user.model';
 @Injectable({
     providedIn: 'root',
-})
+}
+)
 export class UserImplementationRepository extends UserRepository {
     userMapper = new UserImplementationRepositoryMapper();
     constructor(private http: HttpClient) {
@@ -16,7 +17,7 @@ export class UserImplementationRepository extends UserRepository {
     }
     login(params: {username: string, password: string}): Observable<UserModel> {
         return this.http
-            .post<UserEntity>('https://example.com/login', {params})
+            .post<UserEntity>('https://634e2246b8ce95a1dd7f445e.mockapi.io/api/login', {params})
             .pipe(map(this.userMapper.mapFrom));
     }
     register(params: {phoneNum: string, password: string}): Observable<UserModel> {
@@ -26,6 +27,16 @@ export class UserImplementationRepository extends UserRepository {
     }
     getUserProfile(): Observable<UserModel>{
         return this.http.get<UserEntity>('https://example.com/user').pipe(
+            map(this.userMapper.mapFrom));
+    }
+
+    getUser(userId: string): Observable<UserModel> {
+        return this.http.get<UserEntity>(`https://634e2246b8ce95a1dd7f445e.mockapi.io/api/${userId}`).pipe(
+            map(this.userMapper.mapFrom));
+    }
+
+    getUsers(): Observable<UserModel> {
+        return this.http.get<UserEntity>(`https://634e2246b8ce95a1dd7f445e.mockapi.io/api`).pipe(
             map(this.userMapper.mapFrom));
     }
 }
