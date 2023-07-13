@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class GetUsersUseCase implements UseCase<void, UserModel> {
+export class GetUsersUseCase implements UseCase<void, UserModel[]> {
     constructor(private userRepository: UserRepository) { }
-    execute(): Observable<UserModel> {
+    execute(): Observable<UserModel[]> {
         return this.userRepository.getUsers();
     }
 }

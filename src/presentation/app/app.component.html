@@ -1,9 +1,9 @@
 <h1>List User</h1>
-
-<ol type="1">
+<button class="btn btn-primary" (click)="onClickShow()">Show</button>
+<ol type="1" *ngIf="isShow">
   <li *ngFor="let item of userList; let i = index">
-    <span>{{item.userName}}</span>
-    <span>{{item.userName}}</span>
+    <span>{{item.fullName}}</span> - 
+    <span>{{item.username}}</span>
   </li>
 
 </ol>

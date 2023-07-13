@@ -6,12 +6,14 @@ import { UserEntity } from './entities/user-entity';
 import { UserImplementationRepositoryMapper } from './mappers/user-repository.mapper';
 import { UserRepository } from 'src/domain/repositories/user.repository';
 import { UserModel } from 'src/domain/models/user.model';
+import { UsersImplementationRepositoryMapper } from './mappers/users-repository.mapper';
 @Injectable({
     providedIn: 'root',
 }
 )
 export class UserImplementationRepository extends UserRepository {
     userMapper = new UserImplementationRepositoryMapper();
+    usersMapper = new UsersImplementationRepositoryMapper();
     constructor(private http: HttpClient) {
         super();
     }
@@ -35,8 +37,8 @@ export class UserImplementationRepository extends UserRepository {
             map(this.userMapper.mapFrom));
     }
 
-    getUsers(): Observable<UserModel> {
-        return this.http.get<UserEntity>(`https://634e2246b8ce95a1dd7f445e.mockapi.io/api/login`).pipe(
-            map(this.userMapper.mapFrom));
+    getUsers(): Observable<UserModel[]> {
+        return this.http.get<UserEntity[]>(`https://634e2246b8ce95a1dd7f445e.mockapi.io/api/user`).pipe(
+            map(this.usersMapper.mapFrom));
     }
 }

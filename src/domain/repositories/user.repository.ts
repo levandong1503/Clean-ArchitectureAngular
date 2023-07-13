@@ -5,5 +5,5 @@ export abstract class UserRepository {
     abstract register(params: {phoneNum: string, password: string}): Observable<UserModel>;
     abstract getUserProfile(): Observable<UserModel>;
     abstract getUser(userId: string) : Observable<UserModel>;
-    abstract getUsers() : Observable<UserModel>;
+    abstract getUsers() : Observable<UserModel[]>;
 }
